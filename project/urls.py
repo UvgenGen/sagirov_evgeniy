@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.shortcuts import render
-
-def home(request):
-	return render(request, 'index.html')
+from project.views import home
+from person.views import person_list
 
 urlpatterns = [
+    url(r'^home/', home),
+    url(r'^person/', person_list),
+
     url(r'^admin/', admin.site.urls),
-    url(r'^', home),
 ]

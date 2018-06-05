@@ -22,23 +22,28 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/home/">Home </a>
+        </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/home/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/person/">Person <span class="sr-only">(current)</span></a>
         </li>
-         <li class="nav-item ">
-          <a class="nav-link" href="/person/">Person </a>
-        </li>
-             <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul>
     </div>
   </nav>
 
-    <div class="jumbotron">
-      <h1>Оглавление блока</h1>
-      <p class="lead">Заполнение блока.</p>
-    </div>
+  <div class="jumbotron">
+    <h1>Person_list</h1>
+    {%for person in persons %}
+    <p>
+      {{ person.name }}
+    </p>
+    {%endfor%}
+  </div>
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
