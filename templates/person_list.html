@@ -29,21 +29,44 @@
           <a class="nav-link" href="/person/">Person <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link" href="/admin/">admin</a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <div class="jumbotron">
-    <h1>Person_list</h1>
-    {%for person in persons %}
-    <p>
-      {{ person.name }}
-    </p>
-    {%endfor%}
-  </div>
+  <main role="main" class="container">
+    <div class="jumbotron">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h1>Panel heading</h1></div>
 
+        <!-- Table -->
+        <table class="table">
+          <thead> 
+            <tr>
+              <th> # </th>
+              <th> Name </th>
+              <th> Surname </th>
+              <th> Email </th>
+              <th> Phone </th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for person in persons %}
+            <tr>
+              <th scope="row">{{ person.id }} </th>
+              <td>{{ person.name }} </td>
+              <td>{{ person.surname }}</td>
+              <td>{{ person.email }}</td>
+              <td>{{ person.phone }}</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
