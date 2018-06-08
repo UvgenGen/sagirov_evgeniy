@@ -22,14 +22,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/person/">Person </a>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/curse/">Curse </a>
+          <a class="nav-link" href="/person/">Person </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/curse/">Curse <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin/">admin</a>
@@ -37,11 +37,40 @@
       </ul>
     </div>
   </nav>
+
   <main role="main" class="container">
     <div class="jumbotron">
-      <div class="container">
-        <h1>Оглавление блока</h1>
-        <p class="lead">Заполнение блока.</p>
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h1>Curse info</h1></div>
+
+        <!-- Table -->
+        <table class="table">
+          <thead> 
+            <tr>
+              <th> Name </th>
+              <th> Info</th>
+              <th> person</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            
+            <tr>
+              <td>{{ curses.name }} </td>
+              <td>{{ curses.info }}</td>
+              <td>
+                {%for person in curses.person_set.all %}
+
+                <a href="/person/{{person.id}}">{{ person.name }}<br> </a>
+
+                {%endfor%}
+              </td>
+            </tr>
+            
+            
+          </tbody>
+        </table>
       </div>
     </div>
   </main>

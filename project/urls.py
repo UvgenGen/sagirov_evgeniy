@@ -16,11 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from project.views import home
-from person.views import person_list
+from person.views import person_list, curse_list, curse_info, person_info
+
 
 urlpatterns = [
-    url(r'^home/', home),
-    url(r'^person/', person_list),
+    url(r'^$', home),
+    url(r'^person/$', person_list),
+    url(r'^person/(?P<num>\d+)/$', person_info),
+    url(r'^curse/$', curse_list),
+    url(r'^curse/(?P<num>\d+)/$', curse_info),
 
     url(r'^admin/', admin.site.urls),
 ]

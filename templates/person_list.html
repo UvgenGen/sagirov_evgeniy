@@ -23,10 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/home/">Home </a>
+          <a class="nav-link" href="/">Home </a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/person/">Person <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/curse/">Curse </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/admin/">admin</a>
@@ -39,7 +42,7 @@
     <div class="jumbotron">
       <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><h1>Panel heading</h1></div>
+        <div class="panel-heading"><h1>Person</h1></div>
 
         <!-- Table -->
         <table class="table">
@@ -50,6 +53,7 @@
               <th> Surname </th>
               <th> Email </th>
               <th> Phone </th>
+              <th> Curses </th>
             </tr>
           </thead>
           <tbody>
@@ -60,6 +64,12 @@
               <td>{{ person.surname }}</td>
               <td>{{ person.email }}</td>
               <td>{{ person.phone }}</td>
+              <td>
+                {%for curse in person.curse.all %}              
+                <a href="/curse/{{curse.id}}"> {{ curse.name }} </a> 
+                <br>
+                {%endfor%}
+              </td>
             </tr>
             {%endfor%}
           </tbody>

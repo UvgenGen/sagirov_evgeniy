@@ -22,11 +22,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/person/">Person </a>
+        <li class="nav-item active">
+          <a class="nav-link" href="/person/">Person <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/curse/">Curse </a>
@@ -37,11 +37,40 @@
       </ul>
     </div>
   </nav>
+
   <main role="main" class="container">
     <div class="jumbotron">
-      <div class="container">
-        <h1>Оглавление блока</h1>
-        <p class="lead">Заполнение блока.</p>
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><h1>Person</h1></div>
+
+        <!-- Table -->
+        <table class="table">
+          <thead> 
+            <tr>
+              <th> Name </th>
+              <th> Surname </th>
+              <th> Email </th>
+              <th> Phone </th>
+              <th> Curses </th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>{{ persons.name }} </td>
+              <td>{{ persons.surname }}</td>
+              <td>{{ persons.email }}</td>
+              <td>{{ persons.phone }}</td>
+              <td>
+                {%for curse in persons.curse.all %}              
+                <a href="/curse/{{curse.id}}"> {{ curse.name }} </a> 
+                <br>
+                {%endfor%}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </main>
