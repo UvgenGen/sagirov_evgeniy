@@ -1,0 +1,25 @@
+{%extends "base.html" %}
+
+
+{% block title %} persons {% endblock title %}
+
+
+{% block person %}{% endblock %}
+
+
+{% block curse %}{% endblock %}
+
+
+{% block main_content %}
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><h1>{% block nameList %}{% endblock %}</h1></div>
+
+  <!-- Table -->
+  <table class="table">
+    {% block list %}
+
+    {% endblock list %}
+  </table>
+</div>
+{% endblock main_content %}

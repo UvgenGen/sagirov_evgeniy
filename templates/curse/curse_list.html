@@ -1,0 +1,40 @@
+{%extends "baselist.html" %}
+
+
+{% block title %} curses {% endblock title %}
+
+
+{% block curse %} active {% endblock %}
+
+
+{% block nameList %}Curses{%endblock %}
+
+
+{% block list %}
+<thead> 
+  <tr>
+    <th> # </th>
+    <th> Name </th>
+    <th> Info</th>
+    <th> persons</th>
+  </tr>
+</thead>
+
+<tbody>
+  {%for curse in curses %}
+  <tr>
+    <th scope="row">{{ curse.id }} </th>
+    <td>{{ curse.name }} </td>
+    <td>{{ curse.info }}</td>
+    <td>
+      {%for person in curse.person_set.all %}
+
+      <a href="/person/{{person.id}}">{{ person.name }}<br> </a>
+
+      {%endfor%}
+    </td>
+  </tr>
+  {%endfor%}
+</tbody>
+
+{% endblock list %}

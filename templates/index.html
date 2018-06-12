@@ -1,54 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{%extends "base.html" %}
 
-  <!-- Bootstrap CSS -->
-  <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="navbar-top.css" rel="stylesheet">
-  <title>project</title>
-</head>
+{% block title %}project{% endblock title %}
 
-<body>
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">merch</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="/person/">Person </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/curse/">Curse </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/admin/">admin</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <main role="main" class="container">
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Оглавление блока</h1>
-        <p class="lead">Заполнение блока.</p>
-      </div>
-    </div>
-  </main>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="/static/bootstrap/js/bootstrap.js"></script>
-</body>
-</html>
+{% block home %} active {% endblock %}
+
+
+{% block main_content %}
+<h1>Оглавление блока</h1>
+<p class="lead">Заполнение блока.</p>
+{% endblock main_content %}
