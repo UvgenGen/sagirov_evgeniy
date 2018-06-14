@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from person.models import person, curse
+from person.models import Person, Curse
 # Register your models here.
 
 class PersonAdmin(admin.ModelAdmin):
@@ -14,5 +14,5 @@ class CurseAdmin(admin.ModelAdmin):
     
     
 
-admin.site.register(person, PersonAdmin)
-admin.site.register(curse, CurseAdmin)
+admin.site.register(Person, PersonAdmin)
+admin.site.register(Curse, CurseAdmin)
