@@ -1,0 +1,18 @@
+{%extends "base.html" %}
+
+
+{% block title %}delete person{% endblock title %}
+
+
+{% block person%} active {% endblock %}
+
+
+{% block main_content %}
+<h1>Delete person</h1>
+<p>Delete {{ person.name }} {{ person.surname }}</p>
+<form method="post" class="form-horizontal"> 
+	{% csrf_token %}
+	{{ forms.as_p }}
+	<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+</form>
+{% endblock main_content %}

@@ -8,7 +8,7 @@
 
 
 {% block nameList %}Persons{% endblock %}
-
+<a href="addperson/"><button type="button" class="btn btn-primary">ad</button></a>
 
 {% block list %}
 
@@ -34,8 +34,13 @@
     <td>
       {%for curse in person.curse.all %}              
       <a href="/curse/{{curse.id}}"> {{ curse.name }} </a> 
-      <br>
       {%endfor%}
+    </td>
+    <td>  
+      <div class="btn-group" role="group" aria-label="...">
+        <a href="editperson/{{person.id}}/"><button type="button" class="btn btn-primary">Edit</button></a>
+        <a href="deleteperson/{{person.id}}/"><button type="button" class="btn btn-danger">Delete</button></a>
+      </div>
     </td>
   </tr>
   {%endfor%}
