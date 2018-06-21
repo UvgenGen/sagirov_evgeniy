@@ -14,14 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from person.views import person_list, person_info, add_person, edit_person, delete_person
+from person.views import Personlist, PersonDetailView, AddPerson, EditPerson, DeletePerson
 
 
 urlpatterns = [
-    url(r'(editperson/(?P<pk>\d+))/$', edit_person, name = 'edit_person'),
-    url(r'(deleteperson/(?P<pk>\d+))/$', delete_person, name = 'delete_person'),
-    url(r'addperson/$', add_person, name = 'addPerson'),
-    url(r'(?P<pk>\d+)/$', person_info),
-    url(r'$', person_list, name = 'person'),
+    url(r'(editperson/(?P<pk>\d+))/$', EditPerson.as_view(), name = 'edit_person'),
+    url(r'(deleteperson/(?P<pk>\d+))/$', DeletePerson.as_view(), name = 'delete_person'),
+    url(r'addperson/$', AddPerson.as_view(), name = 'addPerson'),
+    url(r'(?P<pk>\d+)/$', PersonDetailView.as_view()),
+    url(r'$', Personlist.as_view(), name = 'person'),
     
 ]

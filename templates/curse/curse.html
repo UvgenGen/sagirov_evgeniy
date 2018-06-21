@@ -18,10 +18,10 @@
 
 <tbody>
   <tr>
-    <td>{{ curses.name }} </td>
-    <td>{{ curses.info }}</td>
+    <td>{{ curse.name }} </td>
+    <td>{{ curse.info }}</td>
     <td>
-      {%for person in curses.person_set.all %}
+      {%for person in curse.person_set.all %}
 
       <a href="/person/{{person.id}}">{{ person.name }}<br> </a>
 

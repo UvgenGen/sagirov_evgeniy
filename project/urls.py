@@ -15,15 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from project.views import home
-from person.views import curse_list, curse_info
-
+from person.views import CurseList, CurseDetailView
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    url(r'^$', home),
+    url(r'^$', TemplateView.as_view(template_name="index.html")),
     url(r'^person/', include('person.urls')),
-    url(r'^curse/$', curse_list),
-    url(r'^curse/(?P<pk>\d+)/$', curse_info),
+    url(r'^curse/$', CurseList.as_view()),
+    url(r'^curse/(?P<pk>\d+)/$', CurseDetailView.as_view()),
 
     url(r'^admin/', admin.site.urls),
 

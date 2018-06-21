@@ -5,6 +5,7 @@ from django import forms
 from django.forms import ModelForm
 from person.models import Person, Curse
 from django.contrib import messages
+from django.views.generic import ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
 
 
 class PersonForm(ModelForm):
@@ -13,30 +14,24 @@ class PersonForm(ModelForm):
 		model = Person
 		widgets = {'curse': forms.SelectMultiple }
 
-def person_list(request):
-	persons = Person.objects.all()
-	return render(request, "person_list.html", 
-						{'persons': persons},);
+class CurseList(ListView):
+	model = Curse
+	template_name = 'curse/curse_list.html'
 
-def person_info(request, pk):
-	persons = Person.objects.get(id=pk)
-	return render(request, "person.html", 
-						{'persons': persons},);
+class CurseDetailView(DetailView):
+    model = Curse
+    template_name = 'curse/curse.html'
+    context_object_name = 'curse'
 
-def add_person(request):
-	form = PersonForm()
-	if request.method == 'POST':
-		form = PersonForm(request.POST)
-		if form.is_valid():
-			newPerson = form.save()
-			messages.success(request, 'Save!')
-			return redirect('person')
-			
-	else:	
-		form = PersonForm()
+class Personlist(ListView):
+	model = Person
+	context_object_name = 'curse'
+	paginate_by = 7
 
-	return render(request, "addPerson.html", 
-						{'forms': form},);
+class PersonDetailView(DetailView):
+    model = Person
+    template_name = "Person"
+    context_object_name = 'person'
 
 def edit_person(request, pk):
 	person = Person.objects.get(id=pk)
@@ -44,7 +39,7 @@ def edit_person(request, pk):
 		form = PersonForm(request.POST, instance=person)
 		if form.is_valid():
 			newPerson = form.save()
-			messages.success(request, 'Save!')
+			messages.success(self.request, 'Save!')
 			return redirect('person')
 			
 	else:	
@@ -53,21 +48,32 @@ def edit_person(request, pk):
 	return render(request, "edit_person.html", 
 						{'forms': form},);	
 
-def delete_person(request, pk):
-	person = Person.objects.get(id=pk)
-	if request.method == 'POST':
-		messages.success(request, 'Delete!')
-		return redirect('person')
+class EditPerson(UpdateView):
+	model = Person
+	template_name = 'edit_person.html'
+	form_class = PersonForm
+	success_url = 'edit_person'
 
-	return render(request, "delete_person.html", 
-						{'person': person},);	
+	def form_valid(self, form):
+		messages.success(self.request, 'Save!')
+		return super(EditPerson, self).form_valid(form)
 
-def curse_list(request):
-	curs = Curse.objects.all()
-	return render(request, "curse_list.html", 
-						{'curses': curs},);
+class DeletePerson(DeleteView):
+	model = Person
+	template_name = 'delete_person.html'
+	form_class = PersonForm
+	success_url = 'delete_person'
 
-def curse_info(request, pk): 
-	curs = Curse.objects.get(id=pk)
-	return render(request, "curse.html", 
-						{'curses': curs});
+	def form_valid(self, form):
+		messages.success(self.request, 'Save!')
+		return super(DeletePerson, self).form_valid(form)
+
+class AddPerson(CreateView):
+	model = Person
+	template_name = 'addPerson.html'
+	form_class = PersonForm
+	success_url = 'person'
+
+	def form_valid(self, form):
+		messages.success(self.request, 'Save!')
+		return super(AddPerson, self).form_valid(form)
