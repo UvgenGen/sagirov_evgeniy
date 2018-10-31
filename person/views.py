@@ -26,27 +26,12 @@ class CurseDetailView(DetailView):
 class Personlist(ListView):
 	model = Person
 	context_object_name = 'curse'
-	paginate_by = 7
+	paginate_by = 5
 
 class PersonDetailView(DetailView):
     model = Person
-    template_name = "Person"
+    template_name = "person.html"
     context_object_name = 'person'
-
-def edit_person(request, pk):
-	person = Person.objects.get(id=pk)
-	if request.method == 'POST':
-		form = PersonForm(request.POST, instance=person)
-		if form.is_valid():
-			newPerson = form.save()
-			messages.success(self.request, 'Save!')
-			return redirect('person')
-			
-	else:	
-		form = PersonForm(instance=person)
-
-	return render(request, "edit_person.html", 
-						{'forms': form},);	
 
 class EditPerson(UpdateView):
 	model = Person

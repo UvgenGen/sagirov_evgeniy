@@ -12,17 +12,6 @@
 
 {% block list %}
 
-{% if messages %}
-<ul class="messages">
-  {% for message in messages %}
-  <div class="alert alert-success" role="alert">
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-    {{ message }}
-  </li>
-</div>
-{% endfor %}
-</ul>
-{% endif %}
 
 <thead> 
   <tr>
@@ -37,13 +26,13 @@
 
 <tbody>
   <tr>
-    <td>{{ persons.name }} </td>
-    <td>{{ persons.surname }}</td>
-    <td>{{ persons.date_of_birth|date:"F j, Y" }}</td>
-    <td>{{ persons.email }}</td>
-    <td>{{ persons.phone }}</td>
+    <td>{{ person.name }} </td>
+    <td>{{ person.surname }}</td>
+    <td>{{ person.date_of_birth|date:"F j, Y" }}</td>
+    <td>{{ person.email }}</td>
+    <td>{{ person.phone }}</td>
     <td>
-      {%for curse in persons.curse.all %}              
+      {%for curse in person.curse.all %}              
       <a href="/curse/{{curse.id}}"> {{ curse.name }} </a> 
       <br>
       {%endfor%}

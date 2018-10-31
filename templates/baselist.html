@@ -4,22 +4,66 @@
 {% block title %} persons {% endblock title %}
 
 
-{% block person %}{% endblock %}
-
-	
-{% block curse %}{% endblock %}
-
 {% block main_content %}
 
 <div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading"><h1>{% block nameList %}{% endblock %}</h1></div>
+	<!-- Default panel contents -->
+	<div class="panel-heading"><h1>{% block nameList %}{% endblock %}</h1></div>
 
-  <!-- Table -->
-  <table class="table table-striped table-bordered">
-    {% block list %}
+	<!-- Table -->
+	<table class="table table-striped table-bordered">
+		{% block list %}
 
-    {% endblock list %}
-  </table>
+		{% endblock list %}
+	</table>
 </div>
+
+{% if is_paginated %}
+<ul class="pagination ">
+
+	{% if page_obj.has_previous %}
+	<li class="page-item">
+		<span><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+	</li>
+	{%else%}
+	<li class="page-item disabled">
+		<span><a class="page-link">Previous</a></span>
+	</li>
+	{% endif %}
+
+	{% if page_obj.number|add:'-4' > 1 %}
+	<li><a class="page-link" href="?page={{ page_obj.number|add:'-5' }}">&hellip;</a></li>
+	{% endif %}
+
+	{% for i in page_obj.paginator.page_range %}
+	{% if page_obj.number == i %}
+	<li class="page-item active">
+		<span class="page-link">
+			{{ i }}
+			<span class="sr-only">(current)</span>
+		</span>
+	</li>
+	{%elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5'%}
+	<li class="page-item disable">
+		<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+	</li>
+	{%endif%}
+	{%endfor%}
+
+	{% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+	<li><a class="page-link" href="?page={{ page_obj.number|add:'5' }}">&hellip;</a></li>
+	{% endif %}
+
+	{% if page_obj.has_next %}
+	<li class="page-item">
+		<span><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></span>
+	</li>
+	{%else%}
+	<li class="page-item disabled">	
+		<span><a class="page-link">Next</a></span>
+	</li>
+	{% endif %} 
+</ul>
+{% endif %}
+
 {% endblock main_content %}
